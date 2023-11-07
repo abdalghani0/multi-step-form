@@ -1,38 +1,499 @@
-.App {
-  text-align: center;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* 
+==============================
+	    General styles
+==============================
+*/
+ 
+*befor,
+ *after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+         -box-sizing: border-box;
+ }
+ 
+body {
+	background: hsl(217, 100%, 97%);
+	font-family: 'Ubuntu', sans-serif;
+	line-height: 1.5;
+	font-size: 16px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.app {
+	display: flex;
+	justify-content: space-between;
+	width: 57rem;
+	height: 600px;
+	margin: 5rem auto;
+	background: white;
+	position: relative;
+	border-radius: 15px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.step {
+	display: block;
+	width: 68.2%;
+	height: 100%;
+	position: relative;
 }
 
-.App-link {
-  color: #61dafb;
+.btn,
+.back-btn {
+	background: hsl(213, 96%, 18%);
+	padding: 8px 20px 10px 20px;
+	color: white;
+	border-radius: 5px;
+	position: absolute;
+	text-decoration: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn {
+	bottom: 20px;
+	right: 65px;
+}
+
+.btn:hover,
+.back-btn:hover {
+	background: hsl(243, 100%, 62%);
+}
+
+.back-btn {
+	left: 65px;
+	bottom: 20px;
+}
+
+.hide {
+	display: none;
+}
+ 
+.step-container {
+	width: 80%;
+	margin: 60px auto 30px auto;
+	position: relative;
+}
+
+.step h3 {
+	font-size: 30px;
+	font-weight: 700;
+	color: hsl(213, 96%, 18%);
+}
+
+.step h5 {
+	color: hsl(231, 11%, 63%);
+	margin-bottom: 40px;
+	margin-top: 10px;
+}
+
+.alert {
+	display: none;
+	float: right;
+	font-size: 12px;
+	font-weight: 700;
+	color: hsl(354, 84%, 57%);
+}
+
+/* 
+==============================
+	       side-bar
+==============================
+*/ 
+
+.side-bar {
+	color: white;
+	width:27%;
+	font-size: 16px;
+	padding: 40px 0 0 30px;
+	margin: 15px;
+	margin-right: 0;
+	text-transform: uppercase;
+	line-height: 1.2;
+	background: url("bg-sidebar-desktop.svg") no-repeat;
+	border-radius: 8px;
+}
+
+.steps-list li{
+	display: flex;
+	gap: 10px;
+	margin-bottom: 30px;
+}
+
+.step-number {
+	color: hsl(231, 11%, 73%);
+	font-size: 14px;
+}
+ 
+.circle {
+	display: block;
+	float: left;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: 1px solid hsl(0, 0%, 100%);
+	margin: 2px 15px 0 0;
+	text-align: center;
+	line-height: 1.7;
+}
+
+.current-step {
+	background-color: hsl(206, 94%, 87%);
+	color: hsl(213, 96%, 18%);
+	border: 0;
+}
+
+/* 
+==============================
+	       step 1
+==============================
+*/
+
+label {
+	display: block;
+	margin-bottom: 26px;
+	font-size: 14px;
+}
+
+form input {
+	padding: 12px;
+	margin-top: 2px;
+	padding-right: 0;
+	border-radius: 8px;
+	width: 96.5%;
+	border: 1px solid hsl(229, 24%, 87%);
+}
+
+form input:focus {
+	border: 0;
+	outline: 1px solid hsl(243, 100%, 62%);
+}
+
+/* 
+==============================
+	       step 2
+==============================
+*/
+
+.plans {
+	display: flex;
+	justify-content: center;
+}
+
+.plan {
+	width: 33%;
+	margin-right: 12px;
+	border: 1px solid hsl(229, 24%, 87%);
+	padding: 15px;
+	border-radius: 8px;
+	transition: border 0.3s ease;
+	cursor: pointer;
+}
+
+.plan:hover {
+	border: 1px solid hsl(243, 100%, 62%);
+}
+
+.plan.selected {
+	border: 1px solid hsl(243, 100%, 62%);
+	background: hsl(206, 94%, 87%);
+}
+
+.plan-name {
+	color: hsl(213, 96%, 18%);
+}
+
+.plan-price {
+	color: hsl(231, 11%, 63%);
+}
+
+#pro {
+	margin-right: 0;
+}
+
+.toggle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	margin-top: 30px;
+	width:100%;
+	height: 40px;
+	background: hsl(217, 100%, 97%);
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+.rect {
+	position: relative;
+	width: 40px;
+	height: 20px;
+	border-radius: 15px;
+	background: hsl(213, 96%, 18%);
+}
+
+#slider {
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background: white;
+	margin: 2.5px 3px;
+	transition: transform 0.2s;
+}
+
+.move {
+	transform: translateX(18px);
+}
+
+.toggled {
+	color: hsl(213, 96%, 18%);
+}
+
+/* 
+==============================
+	       step 3
+==============================
+*/
+
+.addon {
+	display: block;
+	margin-bottom: 15px;
+	width: 98%;
+	border: 1px solid hsl(229, 24%, 87%);
+	padding: 0 0 0 7px;
+	border-radius: 6px;
+	height: 86px;
+	cursor: pointer;
+}
+
+.addson:last-child {
+	margin-bottom: 0;
+}
+
+.addon:hover {
+	border: 1px solid hsl(243, 100%, 62%);
+}
+
+.addon.selected {
+	border: 1px solid hsl(243, 100%, 62%);
+	background: hsl(206, 94%, 87%);
+}
+
+.addon-text {
+	margin-top: 20px;
+}
+
+.addon-text h5 {
+	color: hsl(213, 96%, 18%);
+	margin: 0;
+}
+
+.addon-text p {
+	color: hsl(231, 11%, 63%);
+	margin: 0;
+}
+
+.addon-price {
+	color: hsl(243, 100%, 62%);
+	float: right;
+	margin-top:32px;
+	margin-right: 13px;
+}
+.addon input {
+	margin-right: 15px;
+	margin-bottom: 40px;
+	width: 30px;
+}
+.addon input,
+.addon-text,
+.addon-price {
+	display: inline-block
+}
+
+/* 
+==============================
+	       step 4
+==============================
+*/
+
+.plan-and-addons {
+	border-radius: 5px;
+}
+
+.details {
+	background: hsl(217, 100%, 97%);
+	padding: 20px;
+}
+
+.picked-plan,
+.selected-addon,
+.total {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 0.6rem;
+}
+
+#picked-plan {
+	color: hsl(213, 96%, 18%);
+	text-transform: capitalize;
+	font-weight: 500;
+}
+#picked-plan-price {
+	color: hsl(213, 96%, 18%);
+	font-weight: 500;
+}
+.selected-addons {
+	margin-bottom: 8px;
+}
+
+.selected-addon-name {
+	color: hsl(231, 11%, 63%);
+}
+
+.selected-addon-price {
+	color: hsl(213, 96%, 18%);
+}
+
+.chng-btn {
+	text-decoration: underline;
+	color: hsl(231, 11%, 63%);
+}
+
+.per {
+	color:hsl(231, 11%, 63%);
+}
+
+#total-price {
+	color: hsl(243, 100%, 62%);
+}
+
+/* 
+==============================
+	       step 5
+==============================
+*/
+
+.step-5 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 10rem;
+}
+
+.step-5 p {
+	color: hsl(231, 11%, 63%);
+	margin-top: 1rem;
+}
+
+@media(max-width: 924px) {
+	.app {
+		flex-direction: column;
+		background: none;
+		width: 100%;
+		height: 100vh;
+		margin: 0 auto;
+		position: relative;
+	}
+	.steps-list {
+		margin-top: 1rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.num {
+		display: none;
+	}
+	.side-bar {
+		margin: 0;
+		padding:0;
+		height: 10rem;
+		width: 100%;
+		background: url("bg-sidebar-mobile.svg")  no-repeat;
+		background-size: 100%;
+	}
+	.step {
+		background-color: white;
+		max-height: 33rem;
+		width: 90%;
+		border-radius: 8px;
+		margin: 0 auto;
+		transform: translateY(-16vh);
+	}
+	.hide {
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 4rem;
+		background-color: white;
+		bottom: 0;
+	}
+	.step-container {
+		margin: 30px auto 0 auto ;
+	}
+	.step-5 {
+		margin-top: 10rem;
+	}
+	.show {
+		display: none;
+	}
+	.btn,
+	.back-btn {
+		bottom: 10px;
+	}
+	.step h5 {
+		margin-bottom: 20px;
+		margin-top: 8px;
+	}
+	.plans {
+		flex-direction: column;
+		gap: 0.7rem;
+	}
+	.plan {
+		display: flex;
+		width: 93%;
+		align-items: center;
+		gap: 1rem;
+	}
 }
