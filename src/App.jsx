@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HashRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Step1 from "./steps/Step-1";
 import Step2 from "./steps/Step-2";
 import Step3 from "./steps/Step-3";
@@ -26,7 +26,7 @@ export default function App() {
         <main className="app" style={{display: "flex"}}>
             <Sidebar currentStep={currentStep}/>
 
-            <HashRouter>
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <Routes>
                     <Route path="/" element={<Step1 onStepChange={setCurrentStep} form={form} setForm={setForm}/>}/>
                     <Route path="/steps/Step-2" element={<Step2 plan={plan} duration={duration} setDuration={setDuration} setPlan={setPlan} onStepChange={setCurrentStep}/>}/>
@@ -34,7 +34,7 @@ export default function App() {
                     <Route path="/steps/Step-4" element={<Step4 setAddons={setAddons} plan={plan} duration={duration} addons={addons} onStepChange={setCurrentStep}/>}/>
                     <Route path="/steps/Step-5" element={<Step5/>}/>
                 </Routes>
-            </HashRouter>
+            </BrowserRouter>
 
             <Outlet/>
         </main>
